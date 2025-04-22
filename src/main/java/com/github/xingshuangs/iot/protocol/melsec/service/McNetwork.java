@@ -219,17 +219,17 @@ public class McNetwork extends TcpClientBasic {
         if (this.frameType == EMcFrameType.FRAME_4E && ack.getHeader().getSubHeader() != EMcFrameType.FRAME_4E.getAckSubHeader()) {
             // 4E帧类型，响应副帧头和请求副帧头不一致，请求副帧头+ req.getHeader().getSubHeader() + "，响应副帧头：" + ack.getHeader().getEndCode()
             throw new McCommException("4E frame type, the response sub header is inconsistent with the request sub header" +
-                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getEndCode());
+                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getSubHeader());
         }
         if (this.frameType == EMcFrameType.FRAME_3E && ack.getHeader().getSubHeader() != EMcFrameType.FRAME_3E.getAckSubHeader()) {
             // "3E帧类型，响应副帧头和请求副帧头不一致，请求副帧头：" + req.getHeader().getSubHeader() + "，响应副帧头：" + ack.getHeader().getEndCode()
             throw new McCommException("3E frame type, the response sub header is inconsistent with the request sub header" +
-                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getEndCode());
+                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getSubHeader());
         }
         if (this.frameType == EMcFrameType.FRAME_1E && ack.getHeader().getSubHeader() != req.getHeader().getSubHeader() + 0x80) {
             // "3E帧类型，响应副帧头和请求副帧头不一致，请求副帧头：" + req.getHeader().getSubHeader() + "，响应副帧头：" + ack.getHeader().getEndCode()
             throw new McCommException("1E frame type, the response sub header is inconsistent with the request sub header, error = 0x80" +
-                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getEndCode());
+                    ", the request sub header：" + req.getHeader().getSubHeader() + ", the response sub header：" + ack.getHeader().getSubHeader());
         }
         if (ack.getHeader().getEndCode() != 0) {
             String errorContent = this.extractError(ack.getHeader().getEndCode());
